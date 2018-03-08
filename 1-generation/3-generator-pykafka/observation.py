@@ -33,9 +33,19 @@ def oru():
         'method':str(),
         'service_id':str()
     }
+    
+    BABESIA = {
+        'components':{
+        'count':{'value':int(),'unit':''},
+        'result':{'value':str(),'unit':''}
+        },
+        'method':str(),
+        'service_id':str()
+    }
 
-    x = random.randint(0, 1)
-    if x == 1:
+    x = random.randint(0, 3)
+    
+    if x == 0:
         CMP['components']['sodium']['value'] = np.random.normal(139.59, 4.47)
         CMP['components']['potassium']['value'] = np.random.normal(4.19, 0.57)
         CMP['components']['chloride']['value'] = np.random.normal(101.04, 5.43)
@@ -49,7 +59,7 @@ def oru():
 
         return CMP
     
-    else:
+    elif x == 1:
         CBC['components']['hemoglobin']['value'] = np.random.normal(13, 1.5)
         CBC['components']['hematocrit']['value'] = np.random.normal(40, 5)
         CBC['components']['wbc']['value'] = np.random.normal(8, 2)
@@ -59,6 +69,19 @@ def oru():
         CBC['method'] = 'SYSMEX'
         
         return CBC
+    else:
+        r = random.randint(0, 1)
+        if r == 0:
+            BABESIA['components']['count']['value'] = np.random.normal(1, 15)
+            BABESIA['components']['result']['value'] = 'positive'
+        else:
+            BABESIA['components']['count']['value'] = 0
+            BABESIA['components']['result']['value'] = 'negative'
+
+        BABESIA['service_id'] = 'BABESIA'
+        BABESIA['method'] = 'MANUAL SMEAR REVIEW'
+        
+        return BABESIA
 
 
 # result object
